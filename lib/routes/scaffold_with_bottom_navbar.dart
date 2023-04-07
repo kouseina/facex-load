@@ -1,5 +1,7 @@
 import 'package:facex_load/routes/routes_path.dart';
+import 'package:facex_load/utils/assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class ScaffoldWithBottomNavbar extends StatelessWidget {
@@ -15,17 +17,42 @@ class ScaffoldWithBottomNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget strip() {
+      return Container(
+        width: 8,
+        height: 3,
+        decoration: BoxDecoration(
+          color: const Color(0xff82AAE3),
+          borderRadius: BorderRadius.circular(10),
+        ),
+      );
+    }
+
     return Scaffold(
       body: child,
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: SvgPicture.asset(SvgAssets.icHome.assetName),
+            activeIcon: Column(
+              children: [
+                SvgPicture.asset(SvgAssets.icHome.assetName),
+                strip(),
+              ],
+            ),
+            label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Download',
+            icon: SvgPicture.asset(SvgAssets.icDownload.assetName),
+            activeIcon: Column(
+              children: [
+                SvgPicture.asset(SvgAssets.icDownload.assetName),
+                strip(),
+              ],
+            ),
+            label: '',
           ),
         ],
         currentIndex: _calculateSelectedIndex(context),
