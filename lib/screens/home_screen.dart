@@ -12,15 +12,15 @@ class HomeScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Text('Home'),
-            SizedBox(
+            const Text('Home'),
+            const SizedBox(
               height: 16,
             ),
             ElevatedButton(
               onPressed: () {
                 GoRouter.of(context).go(RoutesPath.download);
               },
-              child: Text('Go to Download'),
+              child: const Text('Go to Download'),
             ),
           ],
         ),

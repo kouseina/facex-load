@@ -12,15 +12,15 @@ class DownloadedScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Text('download'),
-            SizedBox(
+            const Text('download'),
+            const SizedBox(
               height: 16,
             ),
             ElevatedButton(
               onPressed: () {
                 GoRouter.of(context).go(RoutesPath.home);
               },
-              child: Text('go to Home'),
+              child: const Text('go to Home'),
             ),
           ],
         ),
