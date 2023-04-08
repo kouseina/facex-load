@@ -30,33 +30,51 @@ class ScaffoldWithBottomNavbar extends StatelessWidget {
 
     return Scaffold(
       body: child,
-      bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(SvgAssets.icHome.assetName),
-            activeIcon: Column(
-              children: [
-                SvgPicture.asset(SvgAssets.icHome.assetName),
-                strip(),
-              ],
-            ),
-            label: '',
+      bottomNavigationBar: Container(
+        margin: const EdgeInsets.only(right: 20, left: 20, bottom: 20),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 20,
+              offset: const Offset(0, 4),
+              spreadRadius: 10,
+              color: Colors.black.withOpacity(0.05),
+            )
+          ],
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: BottomNavigationBar(
+            elevation: 0,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            items: <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(SvgAssets.icHome.assetName),
+                activeIcon: Column(
+                  children: [
+                    SvgPicture.asset(SvgAssets.icHome.assetName),
+                    strip(),
+                  ],
+                ),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(SvgAssets.icDownload.assetName),
+                activeIcon: Column(
+                  children: [
+                    SvgPicture.asset(SvgAssets.icDownload.assetName),
+                    strip(),
+                  ],
+                ),
+                label: '',
+              ),
+            ],
+            currentIndex: _calculateSelectedIndex(context),
+            onTap: (int idx) => _onItemTapped(idx, context),
           ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(SvgAssets.icDownload.assetName),
-            activeIcon: Column(
-              children: [
-                SvgPicture.asset(SvgAssets.icDownload.assetName),
-                strip(),
-              ],
-            ),
-            label: '',
-          ),
-        ],
-        currentIndex: _calculateSelectedIndex(context),
-        onTap: (int idx) => _onItemTapped(idx, context),
+        ),
       ),
     );
   }

@@ -22,6 +22,10 @@ class HomeScreen extends StatelessWidget {
               },
               child: const Text('Go to Download'),
             ),
+            ElevatedButton(
+              onPressed: () {},
+              child: const Text('show dialog'),
+            ),
           ],
         ),
       ),

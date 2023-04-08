@@ -5,7 +5,35 @@ import 'package:facex_load/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-CustomTransitionPage<dynamic> buildPageWithoutAnimation({
+final GoRouter router = GoRouter(
+  initialLocation: RoutesPath.home,
+  routes: <RouteBase>[
+    ShellRoute(
+      builder: (context, state, child) =>
+          ScaffoldWithBottomNavbar(child: child),
+      routes: [
+        GoRoute(
+          path: RoutesPath.home,
+          pageBuilder: (context, state) => noTransition(
+            context: context,
+            state: state,
+            child: const HomeScreen(),
+          ),
+        ),
+        GoRoute(
+          path: RoutesPath.download,
+          pageBuilder: (context, state) => noTransition(
+            context: context,
+            state: state,
+            child: const DownloadedScreen(),
+          ),
+        ),
+      ],
+    ),
+  ],
+);
+
+CustomTransitionPage<dynamic> noTransition({
   required BuildContext context,
   required GoRouterState state,
   required Widget child,
@@ -17,31 +45,3 @@ CustomTransitionPage<dynamic> buildPageWithoutAnimation({
         child,
   );
 }
-
-final GoRouter router = GoRouter(
-  initialLocation: RoutesPath.home,
-  routes: <RouteBase>[
-    ShellRoute(
-      builder: (context, state, child) =>
-          ScaffoldWithBottomNavbar(child: child),
-      routes: [
-        GoRoute(
-          path: RoutesPath.home,
-          pageBuilder: (context, state) => buildPageWithoutAnimation(
-            context: context,
-            state: state,
-            child: const HomeScreen(),
-          ),
-        ),
-        GoRoute(
-          path: RoutesPath.download,
-          pageBuilder: (context, state) => buildPageWithoutAnimation(
-            context: context,
-            state: state,
-            child: const DownloadedScreen(),
-          ),
-        ),
-      ],
-    ),
-  ],
-);
